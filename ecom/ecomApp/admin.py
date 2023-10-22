@@ -32,7 +32,7 @@ class ContactAdmin(admin.ModelAdmin):
     list_per_page =10
     search_fields=['name','subject']
 
-admin.site.register(settings,SettingsAdmin)
+admin.site.register(web_settings,SettingsAdmin)
 admin.site.register(carousel,CarouselAdmin)
 admin.site.register(Banner,bannerAdmin)
 admin.site.register(About_Name,AboutAdmin)

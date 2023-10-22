@@ -3,7 +3,7 @@ from django.forms import ModelForm,TextInput,EmailInput
 from django.utils.safestring import mark_safe
 
 # Create your models here.
-class settings(models.Model):
+class web_settings(models.Model):
     STATUS=(
         ('True','True'),
         ('False','False'),

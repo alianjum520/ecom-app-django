@@ -7,13 +7,10 @@ from ecomApp.forms import *
 
 # Create your views here.
 def Home(request):
-    setting=settings.objects.get(id=1)
+    setting=web_settings.objects.get(id=1)
     slider = carousel.objects.all() 
     banner1 = Banner.objects.get(id=1)
     banner2 = Banner.objects.get(id=2)
-    banner3 = Banner.objects.get(id=3)
-    banner4 = Banner.objects.get(id=4)
-    banner5 = Banner.objects.get(id=5)
     latest_products =product.objects.all().order_by('-id')
     feature_products = product.objects.all().filter(feature='True')
     women_category = product.objects.all().filter(category_id=2)[:8]
@@ -26,9 +23,6 @@ def Home(request):
         'slider':slider,
         'banner1':banner1,
         'banner2':banner2,
-        'banner3':banner3,
-        'banner4':banner4,
-        'banner5':banner5,
         'latest_products':latest_products,
         'feature_products':feature_products,
         'women_category': women_category,
@@ -39,7 +33,7 @@ def Home(request):
     }
     return render(request,'index.html',context)
 def about(request):
-    setting=settings.objects.get(id=1)
+    setting=web_settings.objects.get(id=1)
     aboutus=About_Us.objects.all()
     category =Category.objects.filter(parent=None)
     context={
@@ -50,7 +44,7 @@ def about(request):
 
     return render(request,'about_us.html',context)
 def ProductView(request,id):
-    setting=settings.objects.get(id=1)
+    setting=web_settings.objects.get(id=1)
     product_view = product.objects.get(id=id)
     category =Category.objects.filter(parent=None)
     images=Images.objects.filter(product_id=id)
@@ -65,7 +59,7 @@ def ProductView(request,id):
     }
     return render(request,'product.html',context)
 def CategoryView(request,slug):
-    setting=settings.objects.get(id=1)
+    setting=web_settings.objects.get(id=1)
     category5=get_object_or_404(Category,slug=slug)
     products3 = category5.product23.filter()
     category =Category.objects.filter(parent=None)
@@ -90,7 +84,7 @@ def contact(request):
             data.save()
             messages.success(request,'Your message has been sent')
             return HttpResponseRedirect(reverse('contact'))
-    setting=settings.objects.get(id=1)
+    setting=web_settings.objects.get(id=1)
     form=ContactForm
     category =Category.objects.filter(parent=None)
     context={
@@ -99,7 +93,7 @@ def contact(request):
         'category':category
     }
     return render(request,'contact.html',context)
-def SearchView(request):
+'''def SearchView(request):
     if request.method == 'POST':
         form=SearchForm(request.POST)
         if form.is_valid():
@@ -120,4 +114,4 @@ def SearchView(request):
             }
             return render(request,'shop.html',context)
     return HttpResponseRedirect('shop.html')
-   
+   '''
