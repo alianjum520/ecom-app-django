@@ -15,6 +15,7 @@ source venv/bin/activate
 
 # install requirements.txt
 pip install -r /home/ubuntu/ecom-app-django/requirements.txt
+pip install pillow
 python3 manage.py makemigrations
 python3 manage.py migrate
 
